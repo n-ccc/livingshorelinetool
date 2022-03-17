@@ -17,8 +17,8 @@ source("4_shiny_code.R")
 source("5_plots.R")
 source("6_text.R")
 
-library(rsconnect)
-rsconnect::deployApp(account = 'nccc')
+# library(rsconnect)
+# rsconnect::deployApp(account = 'nccc')
 
 ##****************##
 ## User interface ## --------------------------------------------------------------------------------------------------------------------------
