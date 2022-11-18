@@ -1,5 +1,5 @@
 ##****************************************##
-## Nature Based Coastal Defence shiny app ## 
+## Nature Based Coastal Defence shiny app ##
 ##****************************************##
 ## Author: Alys Young
 ## Lead: Dr Becki Morris
@@ -19,14 +19,15 @@
 # if (!require(dplyr)) install.packages('dplyr')
 # if (!require(DT)) install.packages('DT')
 ## Load
-library(shiny) # = load shiny 
+library(shiny) # = load shiny
 library(shinythemes) # = built in theme
+library(shinyjs) # for shiny show and hide
+
 library(leaflet) # = map
 # library(stringr)
 library(sf) # = simple features, to read in shp files
 # library(rgdal) # = old version to read in shp files
-library(dplyr) # = data maniputlation and cleaning
-library(shinyjs) # for shiny show and hide
+library(dplyr) # = data manipulation and cleaning
 library(ggplot2)
 
 
@@ -54,7 +55,7 @@ point_Shellfish <- st_read("www/data/taxa_points/Points_Shellfish.gpkg") %>%
 
 ### Line Data -----------------------------------------------------------------------------------------------------------------------------------------------
 
-line_dat <- st_read("www/data/line_full.gpkg")
+line_dat <- st_read("www/data/line_full.gpkg") # here - to do - needs changing.
 
 
 # Suitable overall --------------------------------------------------------
@@ -89,7 +90,7 @@ df_Dune <- line_dat %>%
          "A_rnr_mx",
          "S_srcs_mx",
          "T_jncfr_mx")  %>%
-  rename(Suitability = Suit_dune) 
+  rename(Suitability = Suit_dune)
 
 text_Dune <- paste0('<strong>', "Suitability for dunes: ", '</strong>', df_Dune$Suitability,
                     '<br/>',
@@ -113,7 +114,7 @@ df_Mangrove <- line_dat %>%
          "D_01_men",  #Accomodation
          "D_0Ur_men", # Adaptation
          "A_mrn_mx")  %>%
-  rename(Suitability = Suit_mang) 
+  rename(Suitability = Suit_mang)
 
 text_Mangrove <- paste0('<strong>', "Suitability for mangroves: ", '</strong>', df_Mangrove$Suitability,
                         '<br/>',
@@ -126,7 +127,7 @@ text_Mangrove <- paste0('<strong>', "Suitability for mangroves: ", '</strong>', 
 hover_Mangrove <- paste0('<strong>', "Suitability for mangroves: ", '</strong>', df_Mangrove$Suitability,
                          '<br/>',
                          '<br/>', '<strong>', '<em>', "Avicennia marina",'</em>', ": ", '</strong>', round(df_Mangrove$A_mrn_mx, 2))
-                         
+
 # Saltmarsh ---------------------------------------------------------------
 df_Saltmarsh <- line_dat %>%
   select("Suit_salt",  # suitability
@@ -135,7 +136,7 @@ df_Saltmarsh <- line_dat %>%
          "A_stpds_mx",
          "G_flm_mx",
          "T_rbscl_mx")  %>%
-  rename(Suitability = Suit_salt) 
+  rename(Suitability = Suit_salt)
 
 text_Saltmarsh <- paste0('<strong>', "Suitability for Saltmarsh: ", '</strong>', df_Saltmarsh$Suitability,
                          '<br/>',
@@ -166,7 +167,7 @@ df_Seagrass <- line_dat %>%
          "H_strls_mx",
          "H_ngrcl_mx",
          "Z_mllr_mx")  %>%
-  rename(Suitability = Suit_seag) 
+  rename(Suitability = Suit_seag)
 
 text_Seagrass <- paste0('<strong>', "Suitability for Seagrass: ", '</strong>', df_Seagrass$Suitability,
                         '<br/>',
@@ -196,7 +197,7 @@ df_Shellfish <- line_dat %>%
          "M_gllpr_mx",
          "O_ngs_mx",
          "S_ccllt_mx")  %>%
-  rename(Suitability = Suit_shell) 
+  rename(Suitability = Suit_shell)
 
 text_Shellfish <- paste0('<strong>', "Suitability for Shellfish: ", '</strong>', df_Shellfish$Suitability,
                          '<br/>',
